@@ -1,0 +1,29 @@
+#include<stdio.h>
+int pamonha = 0, bolo = 0, canjica = 0, milho = 0, pedemoleque = 0 ;
+char legal;
+ int main(){
+  do{scanf("%c", &legal);
+switch (legal){
+case('P'):
+pamonha = pamonha+ 1;
+break;
+case('M'):
+milho = milho + 1;
+break;
+case('B'):
+bolo = bolo + 1;
+break;
+case('Q'):
+pedemoleque = pedemoleque + 1;
+break;
+case('C'):
+canjica = canjica + 1;
+break;
+ }
+} while(legal != 'F');
+printf("Bolo: %i\n",bolo);
+printf("Canjica: %i\n",canjica);
+printf("Milho: %i\n",milho);
+printf("Pamonha: %i\n",pamonha);
+printf("Pé de Moleque: %i\n",pedemoleque);
+return 0;}
