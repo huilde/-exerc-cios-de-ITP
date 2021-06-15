@@ -1,0 +1,14 @@
+#include <stdio.h>
+int coluna, linha;
+ int main(){
+scanf("%i", &linha);
+
+for(int f= 0;f < linha; f++){
+scanf("%i",&coluna);
+for(int a= 0; a<coluna; a++){
+printf("*");  
+}
+printf("\n");
+} 
+
+ return 0;}
