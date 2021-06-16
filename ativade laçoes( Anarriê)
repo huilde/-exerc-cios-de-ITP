@@ -1,0 +1,21 @@
+#include<stdio.h>
+int quantidade, vencedor;
+float nota1,nota2,nota3,media, maior=0;
+
+int main(){
+scanf("%i",&quantidade);
+     for(int i = 0; i< quantidade; i++ ){
+    scanf("%f",&nota1);
+    scanf("%f", &nota2);
+    scanf("%f", &nota3);
+    media = (nota1 + nota2 + nota3)/3;
+     if(media>= maior){
+         maior = media;
+         vencedor=i+1; 
+         
+      }
+     }
+printf("Vencedor: %i\n", vencedor);
+printf("Nota: %.2f", maior);
+return 0;
+ }
