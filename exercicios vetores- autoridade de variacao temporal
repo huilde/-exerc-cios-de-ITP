@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+void ordena_vetor(int tam, int* vet){
+  int aux[tam];
+  int i, j, menor, maior, menor_pos, pos = 0;
+
+  maior = vet[0];
+  menor_pos = 0;
+
+for(i=1; i<tam+1; i++){
+menor = maior;
+for(j=0; j<tam; j++){
+     if(vet[j] > maior){
+        maior = vet[j];
+      }
+      else if(vet[j] < menor){
+menor = vet[j];
+menor_pos = j;
+      }
+      
+    }
+
+    aux[pos] = menor;
+    pos++;
+    vet[menor_pos] = maior+1;
+  }
+
+  for(i=0; i<tam; i++)
+    vet[i] = aux[i];
+}
+
+int j;
+int A,B;
+int main(){
+scanf("%i %i",&A,&B);
+int total = A+B;
+int *vetor = calloc(total,sizeof(int));
+
+for(int i=0; i< A ;i++){
+scanf("%d", &vetor[i]); 
+}
+    for( int h= 0; A + h< total ;h++){
+scanf("%d ", &vetor[A+h]);
+}
+
+ordena_vetor(total,vetor);
+
+for( int k=0; k<total; k++){
+    printf("%d ", vetor[k]);
+}
+    return 0;
+}
