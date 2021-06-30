@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+int quantidade,repeticao;
+
+
+
+int main(){
+scanf("%d %d", &quantidade ,&repeticao);
+int *A = calloc((quantidade+1),sizeof(int));
+    for(int i ; i< repeticao; i++){
+        int primeiro,ultimo,maior;
+        scanf("%d %d %d", &primeiro , &ultimo, &maior);
+        for(int i= 0 ; i+primeiro!= ultimo+1;i++){
+        if(maior > A[primeiro+i]){
+        A[primeiro+i] = maior;    
+        }
+        
+        }
+    }
+   
+ for(int i=0; i<=quantidade; i++){
+     printf("%d ",A[i]);
+ }
+ free (A);
+    return 0;
+}
