@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int unique(int n, int values[n], int uniqueValues[n]){
+    int j = n;
+    for(int i=0; i< n;i++){
+        for(int k=0; k<n;k++ ){
+            if(values[i] == uniqueValues[k]){
+                break;
+            }else{
+                if(uniqueValues[k] == 0){
+                    uniqueValues[k] = values[i];
+                
+                    break;
+                }
+            }
+        }
+    }
+    return uniqueValues;
+}
+    
+    
+int main(){
+    int n;
+    scanf("%d", &n);
+    int vetor[n];
+    int *A = calloc(n,sizeof(int));
+    for(int i=0; i< n; i++){
+        scanf("%d", &vetor[i]);
+    }
+    unique(n, vetor, A);
+    for(int i=0; i< n; i++){
+        if(A[i] != 0){
+            printf("%d ", A[i]);
+        }
+    }
+    return 0;
+}
