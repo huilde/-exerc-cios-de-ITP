@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+int *array, *copia;
+int iteracao,inicio,fim;
+int total=2;
+int vetor1[4], vetor2[4],vetor3[4],vetor4[4];
+void escanear(int* vetor){
+for(int i =0; i <4; i++){
+scanf("%d", &vetor[i]);
+}
+}
+
+int main(){
+array = malloc(2*sizeof(int));
+scanf("%d %d ",&array[0], &array[1]);
+escanear(vetor1);
+escanear(vetor2);
+escanear(vetor3);
+escanear(vetor4);
+scanf("%d %d %d", &iteracao,&inicio, &fim);
+int l =1;
+for(int k = 0; k< iteracao; k++){
+  total = total * 2;
+  copia=malloc(sizeof(int)*total*4);
+  for(int i= 0; i <l; i++){
+
+    if(array[2*i]==0 && array[2*i+1]==0){
+    copia[4*i]=vetor1[0];
+    copia[i*4+1]=vetor1[1];
+    copia[i*4+2]=vetor1[2];
+    copia[i*4+3]=vetor1[3];
+    }
+    if(array[2*i]==0 && array[2*i+1]==1){
+    copia[4*i]=vetor2[0];
+    copia[4*i+1]=vetor2[1];
+    copia[4*i+2]=vetor2[2];
+    copia[4*i+3]=vetor2[3];
+    }
+    if(array[2*i]==1&& array[2*i+1]==0){
+    copia[4*i]=vetor3[0];
+    copia[4*i+1]=vetor3[1];
+    copia[4*i+2]=vetor3[2];
+    copia[4*i+3]=vetor3[3];
+    }
+  if(array[2*i]==1 && array[2*i+1]==1){
+  copia[4*i]=vetor4[0];
+  copia[4*i+1]=vetor4[1];
+  copia[4*i+2]=vetor4[2];
+  copia[4*i+3]=vetor4[3];
+  }
+
+
+//array = copia;
+//l= l*2;
+}
+array = copia;
+l= l*2;
+}
+
+for(int b= inicio; b<=fim;b++){
+  printf("%d ",array[b]);
+  }
+
+return 0;}
