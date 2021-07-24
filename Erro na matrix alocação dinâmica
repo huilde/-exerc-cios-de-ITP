@@ -1,0 +1,61 @@
+#include<stdio.h> 
+#include<stdlib.h> 
+int verificaprimo(int numero){
+int bola = 0;
+    for (int i = 2; i <= numero / 2; i++) {
+    if(numero==1){
+        bola = 1;
+    }
+    if (numero % i == 0) {
+       bola++;
+       break;
+    }
+ }
+ if(numero==1){
+        bola = 1;
+    }
+ return bola;
+}
+    int **gerar_area(int semente, int x, int y, int limite){
+    int **matriz;
+    matriz = malloc(sizeof(int*) * x);
+    srand(semente);
+    for(int i=0; i<x; i++){
+    matriz[i] = malloc(sizeof(int) * y);}
+    for(int i=0;i<x;i++){
+        for(int j=0;j<y;j++){
+        matriz[i][j]= rand()% limite;
+    }
+    }
+return matriz;}
+int identificar_ataque(int x, int y, int** matrix){
+int retorno =0;
+for(int i=0;i<x;i++){
+        for(int j=0;j<y;j++){
+            int nsei =matrix[i][j];
+            if(verificaprimo(nsei)==0){
+            matrix[i][j]= -1;
+            retorno = retorno +1;
+            }
+    }
+    }
+return retorno;}
+
+void imprime_matrix(int x, int y, int** matrix){
+     for(int i=0;i<x;i++){
+       if(i>0){printf("\n");}
+        for(int j=0;j<y;j++){
+       printf("%d ", matrix[i][j]);
+    }
+    }
+}
+  int main(void) {
+  int semente, pontos ,x ,y , limite;
+  scanf("%i %i %i %i", &x, &y ,&semente, &limite);
+   int** matrix;
+    matrix = gerar_area(semente, x, y, limite);
+    pontos = identificar_ataque(x, y, matrix);
+    imprime_matrix(x, y, matrix);
+    printf("\nPontos de Ataque: %d", pontos);
+    return 0;
+}
