@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int corrigir (int valor){
+    if(valor>100){
+    valor=100;
+    }
+    else if(valor<0){
+    valor = 0;
+    }
+return valor;}
+void imprime_relatorio(int f, int s, int b, int mimir, int t){
+printf("Status final:\n");
+printf("Fome: %d\n", f);
+printf("Sede: %d\n", s);  
+printf("Banheiro: %d\n", b); 
+printf("Sono: %d\n", mimir);
+printf("Tédio: %d\n", t);
+}
+int simula_sims(int *f, int *s, int *b, int *mimir, int *t){
+char string[18];
+fgets(string, 17, stdin);
+int continuar = 1;
+
+    if(string[0] == 'c'){ *f = corrigir(*f + 30); *s = corrigir(*s - 5); *b= corrigir(*b-15); *mimir = corrigir(*mimir -5); *t= corrigir(*t-5);
+    }
+    else if(string[0] == 'b'){ *f = corrigir(*f-5); *s= corrigir(*s + 30); *b= corrigir(*b -20); *mimir = corrigir(*mimir -5); *t =corrigir( *t-5);
+    }
+    else if(string[0] =='d'){ *f = corrigir(*f-30); *s= corrigir(*s - 30); *b= corrigir(*b -30); *mimir = corrigir(*mimir +80); *t =corrigir( *t+30);
+    }
+    else if(string[0] =='s'){ *f = corrigir(*f-5); *s= corrigir(*s - 5); *b= corrigir(*b+ 100); *mimir = corrigir(*mimir - 5); *t = corrigir(*t- 5);
+    }
+   else if(string[0] =='j'){ *f = corrigir(*f-20); *s= corrigir(*s - 20); *b= corrigir(*b-20); *mimir = corrigir(*mimir - 20); *t = corrigir(*t+ 80);
+   }
+    if(*f==0){
+continuar=0;
+printf("Game Over! Morreu de fome\n");
+ }
+  if(*s==0){
+continuar=0;
+printf("Game Over! Morreu de sede\n");
+ }
+  if(*b==0){
+continuar=0;
+printf("Game Over! Morreu apertado...\n");
+ }
+  if(*mimir==0){
+continuar=0;
+printf("Game Over! Morreu dormindo...\n");
+ }
+  if(*t==0){
+continuar=0;
+printf("Game Over! Morreu deprimido...\n");
+ }
+ if(continuar!= 0){
+    if(*f<=15){
+    printf("Alerta: fome está com valor baixo\n");
+     
+    } 
+    if(*s<=15){
+    printf("Alerta: sede está com valor baixo\n");
+    } 
+    if(*b<=15){
+    printf("Alerta: banheiro está com valor baixo\n");
+    } 
+     if(*mimir<=15){
+     printf("Alerta: sono está com valor baixo\n");
+     } 
+    if(*t<=15){
+    printf("Alerta: tédio está com valor baixo\n");
+    } 
+  }
+return continuar;}
+int main(){
+    char string[18];
+    int fome, sede, banheiro, sono, tedio;
+    int acoes;
+    scanf("%d %d %d %d %d", &fome, &sede, &banheiro, &sono, &tedio);
+    scanf("%d", &acoes);
+    fgets(string, 17, stdin);
+    for(int i = 0; i<acoes; i++){
+        int ret = simula_sims(&fome, &sede, &banheiro, &sono, &tedio);
+        if(ret == 0) break;
+    }
+    imprime_relatorio(fome, sede, banheiro, sono, tedio);
+    return 0;
+}
