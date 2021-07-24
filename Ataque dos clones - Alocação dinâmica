@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+long int S;
+int C;
+int *vetor;
+int valor;
+long int quantidade;
+int *copia;
+void preenchevetor(int array[],long int quantidad, int valo, int total){
+    int numero = 0;
+    for(int i = 0; i<quantidad && numero<total ;i++){
+        if(array[i]==0){
+        array[i]=valo;
+        numero = numero +1;
+        }
+    
+    }
+}
+void calcularmedia(long int *valor, int *array){
+*valor= *valor / 2;
+int *copia = calloc(*valor, sizeof(int));
+for(int k = 0; k < *valor; k++){
+copia[k]= (array[k*2] + array[k*2+1])/2;
+}
+int quantidade = *valor;
+array = realloc(array,sizeof(int) * quantidade);
+for(int j = 0; j < *valor; j++){
+array[j]= copia[j];
+}
+}
+int main(){
+scanf("%li %d",&S ,&C);
+int *vetor = calloc(S, sizeof(int));
+
+for(int i =0 ; i<4; i++){
+   scanf("%li %d",&quantidade, &valor);
+    preenchevetor(vetor,S,valor, quantidade);
+}
+for(int h = 0; h < C; h++){
+calcularmedia(&S,vetor);
+}
+for(int j =0 ; j<S; j++){
+    printf("%d ", vetor[j]);
+}
+return 0;}
