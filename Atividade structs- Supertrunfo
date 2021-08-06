@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include<string.h>
+int mamiferos=0,aves=0,peixes=0,anfibios=0,repteis=0;
+int quantidade;
+    typedef struct{
+    char classe;
+    char supertrunfo;
+    int idade;
+    double peso;
+    char especie[100];
+    }animal;
+void imprimeanimal(animal A){
+printf("Nome:%s\n", A.especie);
+printf("Idade máxima: %d\n", A.idade);
+printf("Peso médio: %.2lf\n", A.peso);
+  if(A.classe=='M'){
+  printf("Classe:mamífero\n");
+  }
+  if(A.classe=='A'){
+  printf("Classe: ave\n");
+  }
+  if(A.classe=='R'){
+  printf("Classe: reptéis\n");
+  }
+  if(A.classe=='N'){
+  printf("Classe: anfíbios\n");
+  }
+  if(A.classe=='P'){
+  printf("Classe:peixes\n");
+  }
+  if(A.supertrunfo=='N'){
+  printf("Supertrunfo?não\n");
+  }
+  if(A.supertrunfo=='S'){
+  printf("Supertrunfo?sim\n");
+  }
+
+printf("\n");
+}
+int maioridade=0 , maiornome=0;
+float maiorpeso=0;
+
+int main(){
+animal animais[32];
+scanf("%d",&quantidade);
+    for(int i =0; i<quantidade;i++){
+    scanf(" %c %c %d %lf", &animais[i].classe, &animais[i].supertrunfo, &animais[i].idade, &animais[i].peso);
+    fgets(animais[i].especie,100,stdin);
+    animais[i].especie[strcspn(animais[i].especie, "\n")] = 0;
+    }
+  
+    for(int j=0;j<quantidade;j++){
+      if(animais[j].idade> maioridade){
+      maioridade= animais[j].idade;
+      }
+      if(animais[j].peso>maiorpeso){
+      maiorpeso=animais[j].peso;
+      }
+      if(strlen(animais[j].especie)>maiornome){
+        maiornome=strlen(animais[j].especie);
+      }
+    }
+      for(int j=0;j<quantidade;j++){
+        if(animais[j].idade== maioridade){
+        printf("Carta com maior tempo de vida:\n");
+        imprimeanimal(animais[j]);
+        }
+      }
+    for(int j=0;j<quantidade;j++){
+      if(animais[j].peso== maiorpeso){
+      printf("Carta com o maior peso:\n");
+      imprimeanimal(animais[j]);
+      }
+    }
+    for(int j=0;j<quantidade;j++){
+      if(strlen(animais[j].especie)== maiornome){
+      printf("Carta com o nome mais longo:\n");
+      imprimeanimal(animais[j]);
+      }
+    }
+  printf("Supertrunfo:\n");
+    for(int l= 0; l <quantidade; l++){
+      if(animais[l].supertrunfo !='N'){
+      imprimeanimal(animais[l]);
+      break;
+      }
+    }
+  for(int v=0; v <quantidade;v++){
+    if(animais[v].classe=='M'){
+    mamiferos= mamiferos+1;
+    }
+    if(animais[v].classe=='A'){
+    aves= aves+1;
+    }
+    if(animais[v].classe=='R'){
+    repteis=repteis+1;
+    }
+    if(animais[v].classe=='N'){
+    anfibios=anfibios+1;
+    }
+    if(animais[v].classe=='P'){
+    peixes=peixes+1;
+    }
+  }
+ printf("Total de cartas em cada classe:\nMamíferos: %d\nRépteis:%d\nPeixes:%d\nAnfíbios:%d\nAves:%d",mamiferos,repteis,peixes,anfibios,aves);
+return 0;}
