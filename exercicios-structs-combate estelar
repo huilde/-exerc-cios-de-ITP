@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+int repeticao, parar;
+typedef struct{
+int a, e, c, m;    
+}nave;
+int parar = 0;
+char n,ataque;
+void danomissil(nave *generica){
+generica->a = generica->a-20;
+}
+void danocanhao(nave *generica){
+generica->e = generica->e-10;
+if(generica->e<=0){
+generica->a= generica->a+generica->e;
+generica->e =0;
+}
+}
+
+
+void funcaoverificamissil(nave *generica){
+  if(generica->m  <=0){
+  printf("Míssil sem munição!\n");
+  }
+    else{
+   generica->m= generica->m- 1;
+  }
+  }
+  void funcaoverificacanhao(nave *generica ){
+  if( generica->c <= 0){
+  printf("Canhão sem munição!\n");
+  }
+  else{
+generica->c = generica->c-1;}
+  }
+int main(){
+nave Enterprise;
+nave Klingons;
+char caracteres[3];
+scanf("%d", &repeticao);
+scanf("%d %d %d %d", &Enterprise.a, &Enterprise.e, &Enterprise.c,&Enterprise.m);
+scanf("%d %d %d %d", &Klingons.a, &Klingons.e, &Klingons.c,&Klingons.m);
+for(int i=0; i <repeticao;i++){
+scanf("%c %c %c",&caracteres[0], &caracteres[1], &caracteres[2]);
+//printf("%c %c", caracteres[1], caracteres[2]);
+  //if(Enterprise.a>0 && Klingons.a>0){
+    if(caracteres[1]=='E' && caracteres[2]=='M'){ 
+    funcaoverificamissil(&Enterprise);
+      if(Enterprise.m>=0 && Enterprise.a>0 && Klingons.a>0){
+      danomissil(&Klingons);
+      }
+  }
+  else if(caracteres[1]=='E' && caracteres[2]=='C'){
+  funcaoverificacanhao(&Enterprise);
+    if(Enterprise.c>=0 && Enterprise.a>0 && Klingons.a>0){
+    danocanhao(&Klingons);
+    }
+  }
+    else if(caracteres[1]=='K'&& caracteres[2]=='M'){
+    funcaoverificamissil(&Klingons);
+      if(Klingons.m>=0&& Enterprise.a>0 && Klingons.a>0){
+      danomissil(&Enterprise);
+      }
+    }
+    else if(caracteres[1]=='K'&& caracteres[2]=='C'){
+    funcaoverificacanhao(&Klingons);
+    if(Klingons.c>=0&& Enterprise.a>0 && Klingons.a>0){
+    danocanhao(&Enterprise);
+    }
+    }
+ // }
+}
+if(Enterprise.a<=0){
+printf("Klingons vencem!");
+    
+}
+else if(Klingons.a<=0){
+printf("Enterprise vence!");
+}
+else{
+printf("Empate!");
+}
+return 0;}
