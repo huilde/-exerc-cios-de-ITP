@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <math.h>
+void recursiva(int n, int inicial, int auxiliar, int principal){
+    if (n == 1){
+        printf("Move o disco em %d para %d\n", inicial, principal);
+    }
+    else{
+        recursiva(n - 1, inicial, principal, auxiliar);
+        printf("Move o disco em %d para %d\n", inicial, principal);
+        recursiva(n - 1, auxiliar, inicial, principal);
+    }
+}
+int calculaquantidade(int n){
+    int valor = pow(2, n) - 1;
+    return valor;
+}
+int discos;
+
+int main(){
+    scanf("%d", &discos);
+    if (discos > 0){
+        recursiva(discos, 1, 2, 3);
+    }
+    printf("Total de movimentos: %d", calculaquantidade(discos));
+    return 0;
+}
